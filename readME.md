@@ -1,3 +1,3 @@
-### This course is hosted by Coursera - Vanderbilt University
+# This course is hosted by Coursera - Vanderbilt University
 
-## Specialization Course 1
+### Specialization Course 1
