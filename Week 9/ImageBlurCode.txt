@@ -1,0 +1,29 @@
+function output = blur(img,w);
+    
+    [r,c]=size(img);
+    output=ones(r,c);
+    for ri=1:r
+        for ci=1:c
+            % checking for indicies,and making limits for sub matrix.
+            if ri-w<1
+                sub_mat_all_row_indicies=1:(ri+w);
+            elseif ri+w>r 
+                sub_mat_all_row_indicies=(ri-w):r;
+            else
+                sub_mat_all_row_indicies=(ri-w):(ri+w);
+            end
+            
+            if ci-w<1
+                sub_mat_all_col_indicies=1:(ci+w);
+            elseif ci+w>c 
+                sub_mat_all_col_indicies=(ci-w):c;
+            else            
+                sub_mat_all_col_indicies=(ci-w):(ci+w);
+            end
+            sub_mat=img(sub_mat_all_row_indicies,sub_mat_all_col_indicies);        %make sub matrix/window.
+            % bluring or averaging.
+            output(ri,ci)=mean(sub_mat(:));
+        end
+    end
+    output=uint8(output);       %converting to grayscle. 0 to 255.
+end

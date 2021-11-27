@@ -1,0 +1,26 @@
+function charnum = char_counter(fname, character)
+    fid = fopen(fname, 'rt')
+    charnum = 0
+    if fid < 0
+        charnum = -1;
+        error('error openingfiles');
+        fclose(fid)
+        return
+    end
+    if ischar(character) == 0
+        charnum = -1;
+        fclose(fid)
+        return
+    end
+    
+    oneline = fgets(fid);
+    while ischar(oneline)
+        for element = oneline
+            if element == character
+                charnum = charnum + 1;
+            end
+        end
+        oneline = fgets(fid);
+    end
+    fclose(fid)
+end

@@ -1,0 +1,13 @@
+function distance = get_distance(city_1,city_2)
+    persistent distt city_names;
+    if isempty(distt) && isempty(city_names)                % Ceck wheater first time load or not.
+        [distt,city_names,~]=xlsread('Distances.xlsx');     % Reading ditances and names of cities
+    end
+    rowIndex = find(ismember(city_names(:,1),city_1));   % Searching city_1 in col_1 of excell seet.finding row index.
+    colIndex = find(ismember(city_names(1,:),city_2));   % Searching city_2 in row_1 of excell seet.finding col index.
+    if isempty(rowIndex) || isempty(colIndex)           % If cities nit found return -1.
+       distance=-1;
+    else                                                % Find and retun distance.
+        distance=distt(rowIndex-1,colIndex-1);
+    end 
+end

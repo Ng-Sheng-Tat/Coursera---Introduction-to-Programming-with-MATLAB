@@ -1,0 +1,24 @@
+function charnum = char_counter(fname,character)
+    fid = fopen(fname,'rt');
+    charnum = 0;
+    ii = 0;
+    if fid < 0
+        charnum = -1;
+        return;
+    end
+    if ischar(character) == 0
+        charnum = -1;
+    end
+    
+    % Reading a file one line at a time
+    one_line = fgets(fid);
+    while ischar(one_line)
+        for ii = 1:length(one_line)
+            if strcmp(one_line(ii),character)
+                charnum = charnum + 1;
+            end
+        end
+        one_line = fgets(fid);
+    end
+    fclose(fid);
+end

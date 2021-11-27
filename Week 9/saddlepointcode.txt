@@ -1,0 +1,40 @@
+function indices = saddle(M)
+    [row col] = size(M);
+    indices = [];
+    tempindices = [];
+    
+    if col ==1 && row == 1
+        indices = [1 1]
+        return
+    end
+    if col == 1
+        M = M'
+        for i = 1:length(M)
+            if M(i) == min(M)
+                tempindices = [i 1]
+                indices = [indices; tempindices]
+            end
+        end
+        return
+    end        
+    
+    if row == 1
+        for i = 1:length(M)
+            if M(i) == max(M)
+                tempindices = [1 i]
+                indices = [indices; tempindices]
+            end
+        end
+        return
+    end
+
+    for r=1:row
+        for c=1:col
+             if M(r,c) == max(M(r,:)) && M(r,c)==min(M(:, c))
+                 tempindices = [r c];
+                 indices = [indices; tempindices]
+             end
+        end
+    end
+
+end
